@@ -45,6 +45,7 @@ body {
 }
 
 input {
+  font-family: "JetBrains Mono";
   font-size: 22px;
   text-align: center;
   border: none;
@@ -123,6 +124,7 @@ input[type=number] {
 }
 
 .body button {
+  font-family: "JetBrains Mono";
   text-transform: uppercase;
   font-size: 14px;
   cursor: pointer;
