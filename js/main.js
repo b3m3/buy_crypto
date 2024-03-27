@@ -11,6 +11,34 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const resetBtn = document.querySelector('#reset');
 
+  const getData = () => {
+    const data = JSON.parse(localStorage.getItem('data'));
+
+    if (data) {
+      earnings.textContent = `${data.earnings}$`;
+      coins.textContent = data.coins;
+      percent.value = data.percent;
+      capital.value = data.capital;
+      buy.value = data.buy;
+      sale.value = data.sale;
+    }
+  }
+
+  getData();
+
+  const setData = () => {
+    const data = {
+      earnings: earnings.textContent.slice(0, -1),
+      coins: coins.textContent,
+      percent: percent.value,
+      capital: capital.value,
+      buy: buy.value,
+      sale: sale.value
+    }
+
+    localStorage.setItem('data', JSON.stringify(data));
+  }
+
   const numberFormat = (num, length) => {
     return `${num}`.indexOf('.') === -1 ? num : num.toFixed(length);
   }
@@ -57,6 +85,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     buy.placeholder = !+buy.value && '0.00';
     percent.value = +buy.value ? +percent.value : 2.5;
+
+    setData();
   });
 
   sale.addEventListener('input', () => {
@@ -73,6 +103,8 @@ document.addEventListener("DOMContentLoaded", () => {
     earnings.textContent = +sale.value && +buy.value
       ? numberFormat((+sale.value * +coins.textContent) - +capital.value, 3) + '$'
       : '0.00$';
+
+    setData();
   });
 
   percent.addEventListener('input', () => {
@@ -80,6 +112,7 @@ document.addEventListener("DOMContentLoaded", () => {
     saleHandler(percent);
     earningsHandler(percent);
     coinsHandler(percent);
+    setData();
   });
 
   capital.addEventListener('input', () => {
@@ -92,7 +125,12 @@ document.addEventListener("DOMContentLoaded", () => {
     earnings.textContent = +capital.value && +buy.value
       ? numberFormat((+sale.value * +coins.textContent) - +capital.value, 3) + '$'
       : '0.00$';
+
+    setData();
   });
 
-  resetBtn.addEventListener('click', resetHandler);
+  resetBtn.addEventListener('click', () => {
+    resetHandler();
+    localStorage.removeItem('data');
+  });
 })
