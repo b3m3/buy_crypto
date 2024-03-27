@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const capital = document.querySelector('#capital');
   const buy = document.querySelector('#buy');
   const sale = document.querySelector('#sale');
+  const total = document.querySelector('#total');
 
   const resetBtn = document.querySelector('#reset');
 
@@ -17,6 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (data) {
       earnings.textContent = `${data.earnings}$`;
       coins.textContent = data.coins;
+      total.textContent = `${data.total}$`;
       percent.value = data.percent;
       capital.value = data.capital;
       buy.value = data.buy;
@@ -33,7 +35,8 @@ document.addEventListener("DOMContentLoaded", () => {
       percent: percent.value,
       capital: capital.value,
       buy: buy.value,
-      sale: sale.value
+      sale: sale.value,
+      total: total.textContent.slice(0, -1)
     }
 
     localStorage.setItem('data', JSON.stringify(data));
@@ -52,6 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const resetHandler = () => {
     earnings.textContent = '0.00$';
     coins.textContent = '0.00';
+    total.textContent = '0.00$';
     percent.value = 2.5;
     capital.value = 1;
     buy.value = '';
@@ -77,11 +81,18 @@ document.addEventListener("DOMContentLoaded", () => {
       : '0.00$';
   }
 
+  const totalHandler = (input) => {
+    return total.textContent = +input.value
+      ? numberFormat(+coins.textContent * +sale.value, 3)  + '$'
+      : '0.00$';
+  }
+
   buy.addEventListener('input', () => {
     inputLengthHandler(buy, 7);
     saleHandler(buy);
     coinsHandler(buy);
     earningsHandler(buy);
+    totalHandler(buy);
 
     buy.placeholder = !+buy.value && '0.00';
     percent.value = +buy.value ? +percent.value : 2.5;
@@ -104,6 +115,7 @@ document.addEventListener("DOMContentLoaded", () => {
       ? numberFormat((+sale.value * +coins.textContent) - +capital.value, 3) + '$'
       : '0.00$';
 
+    totalHandler(sale);
     setData();
   });
 
@@ -112,6 +124,8 @@ document.addEventListener("DOMContentLoaded", () => {
     saleHandler(percent);
     earningsHandler(percent);
     coinsHandler(percent);
+    totalHandler(percent);
+
     setData();
   });
 
@@ -126,6 +140,7 @@ document.addEventListener("DOMContentLoaded", () => {
       ? numberFormat((+sale.value * +coins.textContent) - +capital.value, 3) + '$'
       : '0.00$';
 
+    totalHandler(capital);
     setData();
   });
 
