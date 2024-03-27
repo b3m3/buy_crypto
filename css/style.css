@@ -1,16 +1,4 @@
-@font-face {
-  font-family: "JetBrains Mono";
-  src: url('../fonts/JetBrainsMono-Regular.woff2') format('woff2'),
-  font-weight: 400;
-  font-variant: normal;
-}
-
-@font-face {
-  font-family: "JetBrains Mono";
-  src: url('../fonts/JetBrainsMono-Bold.woff2') format('woff2'),
-  font-weight: bold;
-  font-variant: normal;
-}
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
 
 * {
   padding: 0;
@@ -33,6 +21,7 @@ html {
 
 body {
   font-family: "JetBrains Mono", monospace;
+  font-weight: 400;
   color: var(--black);
   font-size: 1rem;
 }
@@ -48,7 +37,7 @@ body {
 }
 
 .label {
-  font-weight: bold;
+  font-weight: 400;
   font-size: 13px;
   text-transform: uppercase;
   letter-spacing: 2px;

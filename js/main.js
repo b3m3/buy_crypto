@@ -84,8 +84,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
   capital.addEventListener('input', () => {
     inputLengthHandler(capital, 7);
-    coinsHandler(capital);
-    earningsHandler(capital);
+
+    coins.textContent = +capital.value && +buy.value
+      ? numberFormat(+capital.value / +buy.value, 10)
+      : '0.00';
+
+    earnings.textContent = +capital.value && +buy.value
+      ? numberFormat((+sale.value * +coins.textContent) - +capital.value, 3) + '$'
+      : '0.00$';
   });
 
   resetBtn.addEventListener('click', resetHandler);
