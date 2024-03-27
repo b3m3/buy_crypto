@@ -1,3 +1,17 @@
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url('../fonts/JetBrainsMono-Regular.woff2') format('woff2'),
+  font-weight: 400;
+  font-variant: normal;
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url('../fonts/JetBrainsMono-Bold.woff2') format('woff2'),
+  font-weight: bold;
+  font-variant: normal;
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -18,7 +32,7 @@ html {
 }
 
 body {
-  font-family: "JetBrains Mono";
+  font-family: "JetBrains Mono", monospace;
   color: var(--black);
   font-size: 1rem;
 }
@@ -30,7 +44,7 @@ body {
 }
 
 .wrapp {
-  padding: 40px 0;
+  padding: 40px 15px;
 }
 
 .label {
@@ -83,7 +97,7 @@ input[type=number] {
 
 .top h4 {
   text-align: center;
-  font-size: 1.5rem;
+  font-size: 24px;
   font-weight: bold;
 }
 
@@ -133,4 +147,14 @@ input[type=number] {
 
 .body button:active {
   transform: scale(0.95);
+}
+
+@media screen and (max-width: 768px) {
+  .top h1 {
+    font-size: calc(32px + calc(72 - 32) * ((100vw - 320px) / (768 - 320)));
+  }
+
+  .top h4 {
+    font-size: calc(18px + calc(24 - 18) * ((100vw - 320px) / (768 - 320)));
+  }
 }
