@@ -31,20 +31,29 @@ document.addEventListener("DOMContentLoaded", () => {
     sale.value = '';
   }
 
-  buy.addEventListener('input', () => {
-    inputLengthHandler(buy, 7);
-
-    sale.value = +buy.value
+  const saleHandler = (input) => {
+    return sale.value = +input.value
       ? numberFormat(+buy.value + (+buy.value * (+percent.value / 100)), 3)
       : '';
+  }
 
-    coins.textContent = +buy.value
+  const coinsHandler = (input) => {
+    return coins.textContent = +input.value
       ? numberFormat(+capital.value / +buy.value, 10)
       : '0.00';
+  }
 
-    earnings.textContent = +buy.value
+  const earningsHandler = (input) => {
+    return earnings.textContent = +input.value
       ? numberFormat((+sale.value * +coins.textContent) - +capital.value, 3) + '$'
       : '0.00$';
+  }
+
+  buy.addEventListener('input', () => {
+    inputLengthHandler(buy, 7);
+    saleHandler(buy);
+    coinsHandler(buy);
+    earningsHandler(buy);
 
     buy.placeholder = !+buy.value && '0.00';
     percent.value = +buy.value ? +percent.value : 2.5;
@@ -68,30 +77,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
   percent.addEventListener('input', () => {
     inputLengthHandler(percent, 6);
-
-    sale.value = +percent.value
-      ? numberFormat(+buy.value + (+buy.value * (+percent.value / 100)), 3)
-      : '';
-
-    earnings.textContent = +percent.value
-      ? numberFormat((+sale.value * +coins.textContent) - +capital.value, 3) + '$'
-      : '0.00$';
-
-    coins.textContent = +percent.value
-      ? numberFormat(+capital.value / +buy.value, 10)
-      : '0.00';
+    saleHandler(percent);
+    earningsHandler(percent);
+    coinsHandler(percent);
   });
 
   capital.addEventListener('input', () => {
     inputLengthHandler(capital, 7);
-
-    coins.textContent = +capital.value
-      ? numberFormat(+capital.value / +buy.value, 10)
-      : '0.00';
-
-    earnings.textContent = +capital.value
-      ? numberFormat((+sale.value * +coins.textContent) - +capital.value, 3) + '$'
-      : '0.00$';
+    coinsHandler(capital);
+    earningsHandler(capital);
   });
 
   resetBtn.addEventListener('click', resetHandler);
