@@ -43,12 +43,12 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   const numberFormat = (num, length) => {
-    return `${num}`.indexOf('.') === -1 ? num : num.toFixed(length);
+    return `${num}`.indexOf('.') === -1 ? num : parseFloat(num.toFixed(length));
   }
 
   const inputLengthHandler = (input, length) => {
     if (+input.value.length >= length) {
-      input.value = input.value.slice(0, length)
+      input.value = input.value.slice(0, length);
     }
   }
 
