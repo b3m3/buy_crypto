@@ -121,10 +121,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
   percent.addEventListener('input', () => {
     inputLengthHandler(percent, 6);
-    saleHandler(percent);
-    earningsHandler(percent);
-    coinsHandler(percent);
-    totalHandler(percent);
+
+    sale.value = +buy.value
+      ? numberFormat(+buy.value + (+buy.value * (+percent.value / 100)), 3)
+      : '';
+
+    earnings.textContent = +sale.value && +buy.value
+      ? numberFormat((+sale.value * +coins.textContent) - +capital.value, 3) + '$'
+      : '0.00$';
+
+    coins.textContent = +buy.value
+      ? numberFormat(+capital.value / +buy.value, 10)
+      : '0.00';
+
+    total.textContent = +buy.value && +sale.value
+      ? numberFormat(+coins.textContent * +sale.value, 3)  + '$'
+      : '0.00$';
 
     setData();
   });
@@ -140,7 +152,10 @@ document.addEventListener("DOMContentLoaded", () => {
       ? numberFormat((+sale.value * +coins.textContent) - +capital.value, 3) + '$'
       : '0.00$';
 
-    totalHandler(capital);
+    total.textContent = +capital.value && +buy.value && +sale.value
+      ? numberFormat(+coins.textContent * +sale.value, 3)  + '$'
+      : '0.00$';
+
     setData();
   });
 

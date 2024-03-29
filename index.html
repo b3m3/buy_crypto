@@ -12,64 +12,61 @@
 </head>
 <body>
   <div class="app">
+    <div class="top">
+      <div class="top__col">
+        <p class="label">Earnings</p>
+        <h1 id="earnings">0.00$</h1>
+      </div>
+
+      <div class="top__col">
+        <p class="label">Total</p>
+        <h4 id="total">0.00$</h4>
+      </div>
+
+      <div class="top__col">
+        <p class="label">Coins</p>
+        <h4 id="coins">0.00</h4>
+      </div>
+
+      <div class="top__col">
+        <p class="label">Interest rate</p>
+
+        <div>
+          <input id="percent" type="number" value="2.5">
+        </div>
+      </div>
+
+      <div class="top__col">
+        <p class="label">Capital</p>
+
+        <div>
+          <input id="capital" type="number" value="1">
+        </div>
+      </div>
+    </div>
+
     <div class="container">
-      <div class="wrapp">
+      <div class="body">
+        <div class="body__col">
+          <p class="label">Buy price</p>
 
-        <div class="top">
-          <div class="top__col">
-            <p class="label">Earnings</p>
-            <h1 id="earnings">0.00$</h1>
-          </div>
-
-          <div class="top__col">
-            <p class="label">Coins</p>
-            <h4 id="coins">0.00</h4>
-          </div>
-
-          <div class="top__col">
-            <p class="label">Total</p>
-            <h4 id="total">0.00$</h4>
-          </div>
-
-          <div class="top__col">
-            <p class="label">Interest rate</p>
-
-            <div>
-              <input id="percent" type="number" value="2.5">
-            </div>
-          </div>
-
-          <div class="top__col">
-            <p class="label">Capital</p>
-
-            <div>
-              <input id="capital" type="number" value="1">
-            </div>
+          <div class="body__col_box">
+            <span>$</span>
+            <input id="buy" type="number" placeholder="0.00">
           </div>
         </div>
 
-        <div class="body">
-          <div class="body__col">
-            <p class="label">Buy price</p>
+        <div class="body__col">
+          <p class="label">Sale price</p>
 
-            <div class="body__col_box">
-              <span>$</span>
-              <input id="buy" type="number" placeholder="0.00">
-            </div>
+          <div class="body__col_box">
+            <span>$</span>
+            <input id="sale" type="number" placeholder="0.00">
           </div>
+        </div>
 
-          <div class="body__col">
-            <p class="label">Sale price</p>
-
-            <div class="body__col_box">
-              <span>$</span>
-              <input id="sale" type="number" placeholder="0.00">
-            </div>
-          </div>
-
-          <div class="body__col">
-            <button id="reset">Reset</button>
-          </div>
+        <div class="body__col">
+          <button id="reset">Reset</button>
         </div>
       </div>
     </div>
